@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
 from models.user import User
-from models.event import Event
+from models.event import Event, EventUpdate
 
 class Settings(BaseSettings):
     DATABASE_URL: Optional[str] = None
@@ -14,7 +14,7 @@ class Settings(BaseSettings):
         client = AsyncIOMotorClient(self.DATABASE_URL)
         await init_beanie(
             database=client.get_default_database(), 
-            document_models=[Event, User]
+            document_models=[Event, User, EventUpdate]
         )
 
     class Config:
@@ -42,9 +42,9 @@ class Database:
         doc_id = id
         des_body = body.dict()
         des_body = {k:v for k,v in des_body.items() if v is not None}
-        update_query = {"$set": {
+        update_query = {"$set" : {
             field: value for field, value in des_body.items()
-        }}
+        },}
 
         doc = await self.get(doc_id)
         if not doc:
