@@ -11,3 +11,8 @@ Invoke-RestMethod -Uri 'http://127.0.0.1:8000/event/66e2ddfe91053c3fd3185108' `
 Invoke-RestMethod -Uri 'http://127.0.0.1:8000/event' `
   -Method Get `
   -Headers @{Accept = 'application/json'; 'Content-Type' = 'application/json'}
+
+Invoke-RestMethod -Uri 'http://127.0.0.1:8000/user/signup' `
+  -Method Post `
+  -Headers @{Accept = 'application/json'; 'Content-Type' = 'application/json'} `
+  -Body '{"email": "reader@mybook.com", "password": "examplary"}'
