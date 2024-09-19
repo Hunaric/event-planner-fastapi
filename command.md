@@ -16,3 +16,9 @@ Invoke-RestMethod -Uri 'http://127.0.0.1:8000/user/signup' `
   -Method Post `
   -Headers @{Accept = 'application/json'; 'Content-Type' = 'application/json'} `
   -Body '{"email": "reader@mybook.com", "password": "examplary"}'
+
+Invoke-RestMethod -Uri 'http://127.0.0.1:8000/user/signin' `
+  -Method Post `
+  -Headers @{Accept = 'application/json'; 'Content-Type' = 'application/x-www-form-urlencoded'} `
+  -Body "username=reader@mybook.com&password=examplary"
+

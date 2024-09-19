@@ -22,15 +22,15 @@ class User(Document):
         }
 
 
-class UserSignIn(BaseModel):
-    email: EmailStr
-    password: str
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str
 
 
     class Config:
         json_schema_extra = {
             "example": {
-                "email": "fastapi@learn.com",
-                "password": "strong!!!",
+                "access_token": "long_str",
+                "token_type": "Bearer",
             }
         }
